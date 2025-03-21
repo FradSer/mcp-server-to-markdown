@@ -6,7 +6,8 @@
 
 - 上传文件到 Cloudflare AI 服务
 - 获取文件的 Markdown 描述
-- 支持多种文件类型（图片、文档等）
+- 支持多种文件类型
+- 使用 Cloudflare 的 tomarkdown API
 
 ## 环境设置
 
@@ -29,36 +30,47 @@ CLOUDFLARE_ACCOUNT_ID=your_account_id_here
 npm install
 ```
 
-## 运行服务
-
-```bash
-npm start
-```
-
-## 使用方法
-
-此服务提供 MCP 工具 `generateDescription`，可用于获取文件的描述：
-
-```typescript
-// 示例使用方法
-const result = await generateDescription({
-  filePaths: [
-    "/path/to/your/file.png",
-    "/path/to/another/file.jpg"
-  ]
-});
-```
-
-## 开发
+## 构建与运行
 
 ```bash
 # 构建项目
 npm run build
 
-# 启动开发环境
-npm run dev
+# 运行服务
+npm run inspect
 ```
+
+## 使用方法
+
+此服务提供 MCP 工具 `to-markdown`，可用于获取文件的 Markdown 描述：
+
+```typescript
+// 示例使用方法
+const result = await toMarkdown({
+  filePaths: [
+    "/path/to/your/file.txt",
+    "/path/to/another/file.jpg"
+  ]
+});
+```
+
+响应结果格式：
+
+```json
+[
+  {
+    "filename": "file.txt",
+    "mimeType": "text/plain",
+    "description": "生成的Markdown描述",
+    "tokens": 123
+  }
+]
+```
+
+## 开发
+
+项目使用 TypeScript 开发，基于 Model Context Protocol (MCP) SDK。
 
 ## 许可
 
-MIT 
+MIT
