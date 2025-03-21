@@ -60,7 +60,7 @@ class ToMarkdownServer {
   private registerTools(): void {
     this.server.tool(
       "to-markdown",
-      "Generate markdown description for files",
+      "Generate markdown description for files including PDF (.pdf), Images (.jpeg, .jpg, .png, .webp, .svg), HTML (.html), XML (.xml), Microsoft Office (.xlsx, .xlsm, .xlsb, .xls, .et), Open Document Format (.ods), CSV (.csv), and Apple Documents (.numbers)",
       {
         filePaths: z.array(z.string())
           .describe("Array of absolute file paths to generate descriptions for")
