@@ -1,0 +1,40 @@
+{
+  "name": "mcp-server-to-markdown",
+  "version": "0.1.0",
+  "description": "MCP server to generate markdown descriptions for files using Cloudflare",
+  "type": "module",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fradser/mcp-server-to-markdown.git"
+  },
+  "bin": {
+    "mcp-server-to-markdown": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "inspect": "npx @modelcontextprotocol/inspector dist/index.js"
+  },
+  "keywords": [
+    "cloudflare",
+    "ai",
+    "markdown",
+    "mcp",
+    "file-description"
+  ],
+  "author": "Frad LEE <fradser@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "dotenv": "^16.3.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
