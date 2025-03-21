@@ -68,7 +68,6 @@ class ToMarkdownServer {
       async ({ filePaths }) => {
         const requestId = `req-${++this.requestCounter}`;
         log(`[${requestId}] Processing request for ${filePaths.length} files`);
-        
         try {
           // Validate files exist
           for (const filePath of filePaths) {
