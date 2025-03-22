@@ -1,107 +1,172 @@
-# MCP Markdown转换服务器
+# MCP Server To Markdown ![](https://img.shields.io/badge/A%20FRAD%20PRODUCT-WIP-yellow)
 
-通过 Cloudflare AI 服务将文件转换为 Markdown 描述的 MCP 服务器。
+[![Twitter Follow](https://img.shields.io/twitter/follow/FradSer?style=social)](https://twitter.com/FradSer)
 
-## 功能特点
+English | [简体中文](README.zh-CN.md)
 
-- 上传文件到 Cloudflare AI 服务
-- 获取文件的 Markdown 描述
-- 支持多种文件类型
-- 使用 Cloudflare 的 tomarkdown API
+A powerful Model Context Protocol (MCP) server that leverages Cloudflare AI services to convert various file formats into Markdown descriptions. This server provides a standardized interface for seamless file conversion and description generation.
 
-## 可用工具
+## Key Features
 
-### to-markdown
+- Seamless integration with Cloudflare AI services
+- Efficient Markdown description generation
+- Comprehensive file format support
+- Native Cloudflare tomarkdown API integration
+- User-friendly MCP interface
+- Cross-platform compatibility
 
-这是一个将各种格式文件转换为 Markdown 描述的工具。
+## Supported File Formats
 
-**支持的文件类型：**
-- PDF 文件 (.pdf)
-- 图片文件 (.jpeg, .jpg, .png, .webp, .svg)
-- 网页文件 (.html)
-- XML 文件 (.xml)
-- 微软 Office 文件 (.xlsx, .xlsm, .xlsb, .xls, .et)
-- 开放文档格式 (.ods)
-- CSV 文件 (.csv)
-- 苹果文档 (.numbers)
+| Category | File Extensions |
+|----------|----------------|
+| Documents | .pdf |
+| Images | .jpeg, .jpg, .png, .webp, .svg |
+| Web Content | .html |
+| Data | .xml, .csv |
+| Spreadsheets | .xlsx, .xlsm, .xlsb, .xls, .et, .ods, .numbers |
 
-**参数说明：**
-- `filePaths`：文件路径数组，需要提供文件的完整路径
+## System Requirements
 
-**返回数据格式：**
+- Node.js 18 or later
+- Valid Cloudflare API Token
+- Active Cloudflare Account ID
+
+## Installation
+
+Install globally using npm:
+
+```bash
+npm install -g mcp-server-to-markdown
+```
+
+## MCP Client Configuration
+
+### Cursor Integration
+
+1. Navigate to Cursor settings
+2. Select "MCP" from the sidebar
+3. Choose "Add new global MCP server"
+4. Apply the following configuration:
+    ```json
+    {
+      "mcpServers": {
+        "to-markdown": {
+          "command": "mcp-server-to-markdown",
+          "args": [
+            "CLOUDFLARE_API_TOKEN": "your_api_token"
+            "CLOUDFLARE_ACCOUNT_ID": "your_account_id"
+          ]
+        }
+      }
+    }
+    ```
+
+### Claude Desktop Setup
+
+Add the following to your `claude_desktop_config.json`:
+
 ```json
-[
-  {
-    "filename": "文件名",
-    "mimeType": "文件类型",
-    "description": "生成的Markdown描述",
-    "tokens": "使用的令牌数量"
+{
+  "mcpServers": {
+    "to-markdown": {
+      "command": "mcp-server-to-markdown",
+      "args": [
+            "CLOUDFLARE_API_TOKEN": "your_api_token"
+            "CLOUDFLARE_ACCOUNT_ID": "your_account_id"
+          ]
+    }
   }
-]
+}
 ```
 
-## 环境配置
+### ChatWise Configuration
 
-1. 首先复制环境变量配置模板：
+1. Launch ChatWise
+2. Access Settings
+3. Select Tools section
+4. Click "+" to add new tool
+5. Configure with these parameters:
+   - Type: `stdio`
+   - ID: `to-markdown`
+   - Command: `mcp-server-to-markdown`
+   - Args:
+      ```
+      CLOUDFLARE_API_TOKEN=your_api_token
+      CLOUDFLARE_ACCOUNT_ID=your_account_id
+      ```
 
-```bash
-cp .env.example .env
-```
+## API Reference
 
-2. 在 `.env` 文件中配置你的 Cloudflare 认证信息：
+### to-markdown Tool
 
-```
-CLOUDFLARE_API_TOKEN=你的API令牌
-CLOUDFLARE_ACCOUNT_ID=你的账户ID
-```
+Converts various file formats to Markdown descriptions.
 
-## 安装步骤
+**Input Parameters:**
+- `filePaths`: Array<string> (required) - List of file paths to process
 
-```bash
-npm install
-```
-
-## 构建和运行
-
-```bash
-# 构建项目
-npm run build
-
-# 运行服务
-npm run inspect
-```
-
-## 使用说明
-
-本服务提供了 `to-markdown` 工具，用于生成文件的 Markdown 描述。以下是使用示例：
-
-```typescript
-// 使用示例
-const result = await toMarkdown({
-  filePaths: [
-    "/path/to/your/file.txt",
-    "/path/to/another/file.jpg"
-  ]
-});
-```
-
-返回的数据格式如下：
-
+**Response Structure:**
 ```json
 [
   {
-    "filename": "示例文件.txt",
-    "mimeType": "text/plain",
-    "description": "生成的Markdown描述",
+    "filename": "example.pdf",
+    "mimeType": "application/pdf",
+    "description": "Generated Markdown description",
     "tokens": 123
   }
 ]
 ```
 
-## 开发说明
+## Development Guide
 
-本项目使用 TypeScript 开发，基于模型上下文协议（Model Context Protocol，MCP）SDK 构建。
+### Getting Started
 
-## 开源协议
+1. Clone and setup environment:
+```bash
+git clone <repository-url>
+cd mcp-server-to-markdown
+cp .env.example .env
+```
 
-采用 MIT 协议开源
+2. Configure Cloudflare credentials:
+```plaintext
+CLOUDFLARE_API_TOKEN=your_api_token
+CLOUDFLARE_ACCOUNT_ID=your_account_id
+```
+
+3. Install dependencies and build:
+```bash
+npm install
+npm run build
+```
+
+### Project Structure
+
+```
+.
+├── src/             # Source code
+├── dist/            # Compiled output
+├── types.ts         # Type definitions
+└── .env             # Environment configuration
+```
+
+### Available Scripts
+
+- `npm run build` - Build TypeScript code
+- `npm run inspect` - Run with MCP inspector
+
+## Usage Example
+
+```typescript
+const result = await toMarkdown({
+  filePaths: [
+    "/path/to/document.pdf",
+    "/path/to/image.jpg"
+  ]
+});
+```
+
+## License
+
+MIT License
+
+This project is maintained by [Frad LEE](https://twitter.com/FradSer)
