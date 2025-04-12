@@ -1,0 +1,31 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - cloudflareApiToken
+      - cloudflareAccountId
+    properties:
+      cloudflareApiToken:
+        type: string
+        description: Your Cloudflare API token
+      cloudflareAccountId:
+        type: string
+        description: Your Cloudflare Account ID
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'node',
+      args: ['dist/index.js'],
+      env: {
+        CLOUDFLARE_API_TOKEN: config.cloudflareApiToken,
+        CLOUDFLARE_ACCOUNT_ID: config.cloudflareAccountId
+      }
+    })
+  exampleConfig:
+    cloudflareApiToken: dummy_api_token
+    cloudflareAccountId: dummy_account_id
