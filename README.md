@@ -1,6 +1,7 @@
 # MCP Server To Markdown ![](https://img.shields.io/badge/A%20FRAD%20PRODUCT-WIP-yellow)
 
 [![Twitter Follow](https://img.shields.io/twitter/follow/FradSer?style=social)](https://twitter.com/FradSer)
+[![smithery badge](https://smithery.ai/badge/@FradSer/mcp-server-to-markdown)](https://smithery.ai/server/@FradSer/mcp-server-to-markdown)
 
 English | [简体中文](README.zh-CN.md)
 
@@ -33,6 +34,15 @@ A powerful Model Context Protocol (MCP) server that leverages Cloudflare AI serv
 
 ## Installation
 
+### Installing via Smithery
+
+To install Markdown转换服务器 for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@FradSer/mcp-server-to-markdown):
+
+```bash
+npx -y @smithery/cli install @FradSer/mcp-server-to-markdown --client claude
+```
+
+### Manual Installation
 Install globally using npm:
 
 ```bash
