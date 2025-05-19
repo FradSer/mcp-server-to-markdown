@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Overview
+This project is a Node.js tool to generate markdown descriptions for files using Cloudflare. The main entry point is [dist/index.js](mdc:dist/index.js), built from TypeScript sources. All code must be written in English, including comments and documentation.
+
+# Essential Code Elements
+- Use TypeScript for all source files.
+- Always include type annotations for function parameters and return values.
+- Use the latest version of the @modelcontextprotocol/sdk as specified in [package.json](mdc:package.json).
+- Use dotenv for environment variable management.
+- Use zod for schema validation.
+- All code, comments, and documentation must be in English.
+
+# Naming Conventions
+- Use camelCase for variables and function names.
+- Use PascalCase for class and type names.
+- Use kebab-case for file and directory names.
+- Use UPPER_SNAKE_CASE for constants.
+
+# Deprecated Patterns
+- Do NOT use JavaScript files in the source directory; always use TypeScript.
+- Do NOT use default exports; always use named exports.
+
+# Example Patterns
+```ts
+// Good: Named export
+export function generateMarkdownDescription(filePath: string): string {
+  // ...implementation
+}
+
+// Bad: Default export
+export default function generateMarkdownDescription() {}
+```
+
+# Verification Steps
+- Ensure all new or modified files pass TypeScript compilation (`npm run build`).
+- Ensure all code is commented in English.
+- Check that all dependencies are listed in [package.json](mdc:package.json).
+- Verify that no deprecated patterns are used.
+
+# Common Pitfalls
+- Forgetting to use type annotations.
+- Using default exports instead of named exports.
+- Writing comments or documentation in non-English languages.
+
+# Updating Rules
+Keep this file updated with any changes to project structure, dependencies, or coding standards.
